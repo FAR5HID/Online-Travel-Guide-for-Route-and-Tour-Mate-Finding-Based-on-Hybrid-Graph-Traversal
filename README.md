@@ -4,3 +4,7 @@ The key objectives of this project are as following:
 2. To provide detailed plan with rating option for each spot.
 3. To provide weather forecast and crowd alert for given time period.
 4. To find travel partner to share vehicle reservation cost with review option.
+
+Framework: Django, Database: PostgreSQL
+
+The route finding algorithm is a hybrid of BFS & DFS, written on python.
