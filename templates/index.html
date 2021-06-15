@@ -108,53 +108,53 @@
                             {{ form.non_field_errors }}
 
                             <div class="input_field">
-                                {% comment %} <select>
-                                    <option data-display="Source">উৎস</option>
-                                    <option value="1">চট্টগ্রাম</option>
-                                    <option value="2">কক্সবাজার</option>
-                                    <option value="3">বান্দরবান</option>
-                                    <option value="4">রাঙ্গামাটি</option>
-                                    <option value="5">খাগড়াছড়ি</option>
-                                </select> {% endcomment %}
-                                <label for="{{ form.source.id_for_label }}">উৎস</label>
-                                {{ form.source }}
+                                <select name="source">
+                                    <option data-display="Source"></option>
+                                    <option value="চট্টগ্রাম">চট্টগ্রাম</option>
+                                    <option value="কক্সবাজার">কক্সবাজার</option>
+                                    <option value="বান্দরবান">বান্দরবান</option>
+                                    <option value="রাঙ্গামাটি">রাঙ্গামাটি</option>
+                                    <option value="খাগড়াছড়ি">খাগড়াছড়ি</option>
+                                </select>
+                                {% comment %} <label for="{{ form.source.id_for_label }}">উৎস</label>
+                                {{ form.source }} {% endcomment %}
                             </div>
                             <div class="input_field">
-                                {% comment %} <select>
-                                    <option data-display="Destination">গন্তব্য</option>
-                                    <option value="1">চট্টগ্রাম</option>
-                                    <option value="2">কক্সবাজার</option>
-                                    <option value="3">বান্দরবান</option>
-                                    <option value="4">রাঙ্গামাটি</option>
-                                    <option value="5">খাগড়াছড়ি</option>
-                                </select> {% endcomment %}
-                                {{ form.destination }}
+                                <select name="destination">
+                                    <option data-display="Destination"></option>
+                                    <option value="চট্টগ্রাম">চট্টগ্রাম</option>
+                                    <option value="কক্সবাজার">কক্সবাজার</option>
+                                    <option value="বান্দরবান">বান্দরবান</option>
+                                    <option value="রাঙ্গামাটি">রাঙ্গামাটি</option>
+                                    <option value="খাগড়াছড়ি">খাগড়াছড়ি</option>
+                                </select>
+                                {% comment %} {{ form.destination }} {% endcomment %}
+                            </div>
+                            <div class="input_field" >
+                                <input id="datepicker" name="date" placeholder="Date">
+                                {% comment %} {{ form.date }} {% endcomment %}
                             </div>
                             <div class="input_field">
-                                {% comment %} <input id="datepicker" placeholder="Date"> {% endcomment %}
-                                {{ form.date }}
-                            </div>
-                            <div class="input_field">
-                                {% comment %} <input type="number" id="day" placeholder="Day"> {% endcomment %}
-                                {{ form.day }}
+                                <input type="number" id="day" name="day" placeholder="Day">
+                                {% comment %} {{ form.day }} {% endcomment %}
                             </div>                             
                             <div class="input_field">
-                                {% comment %} <input type="number" id="budget" placeholder="Budget"> {% endcomment %}
-                                {{ form.budget }}
+                                <input type="number" id="budget" name="budget" placeholder="Budget">
+                                {% comment %} {{ form.budget }} {% endcomment %}
                             </div> 
                             <div class="input_field">
-                                {% comment %} <select>
-                                    <option data-display="Category">শ্রেণী</option>
-                                    <option value="1">সমুদ্র</option>
-                                    <option value="">পাহাড়</option>
-                                    <option value="">ঝর্ণা</option>
-                                    <option value="">দ্বীপ</option>
-                                    <option value="">বন</option>
-                                    <option value="">নদী</option>
-                                    <option value="">লেক</option>
-                                    <option value="">পার্ক</option>
-                                </select> {% endcomment %}
-                                {{ form.category }}
+                                <select name="category">
+                                    <option data-display="Category"></option>
+                                    <option value="সমুদ্র">সমুদ্র</option>
+                                    <option value="পাহাড়">পাহাড়</option>
+                                    <option value="ঝর্ণা">ঝর্ণা</option>
+                                    <option value="দ্বীপ">দ্বীপ</option>
+                                    <option value="বন">বন</option>
+                                    <option value="নদী">নদী</option>
+                                    <option value="লেক">লেক</option>
+                                    <option value="পার্ক">পার্ক</option>
+                                </select>
+                                {% comment %} {{ form.category }} {% endcomment %}
                             </div>
 
 
@@ -187,15 +187,9 @@
 
     <br><br><br><br>
     route:<br>
-    {% for qs in q %}
-    {{ qs }}
+    {% for routes in route %}
+    {{ routes }}
     {% endfor %}
-
-    <br>t:<br>
-    {% for qs in t %}
-    {{ qs }}
-    {% endfor %}
-
 
     <!-- where_togo_area_end  -->
     
