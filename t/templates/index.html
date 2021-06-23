@@ -1,0 +1,382 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+    <!-- where_togo_area_start  -->
+    <div class="where_togo_area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3">
+                    <div class="form_area">
+                        <h3>Where you want to go?</h3>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="search_wrap">
+                        <form class="search_form" action="#" method="post"> 
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+
+                            <div class="input_field">
+                                <select name="source">
+                                    <option data-display="Source"></option>
+                                    <option value="চট্টগ্রাম">চট্টগ্রাম</option>
+                                    <option value="কক্সবাজার">কক্সবাজার</option>
+                                    <option value="বান্দরবান">বান্দরবান</option>
+                                    <option value="রাঙ্গামাটি">রাঙ্গামাটি</option>
+                                    <option value="খাগড়াছড়ি">খাগড়াছড়ি</option>
+                                </select>
+                                {% comment %} <label for="{{ form.source.id_for_label }}">উৎস</label>
+                                {{ form.source }} {% endcomment %}
+                            </div>
+                            <div class="input_field">
+                                <select name="destination">
+                                    <option data-display="{% if dest %}{{dest}}{% else %}Destination{% endif %}"></option>
+                                    <option value="চট্টগ্রাম">চট্টগ্রাম</option>
+                                    <option value="কক্সবাজার">কক্সবাজার</option>
+                                    <option value="বান্দরবান">বান্দরবান</option>
+                                    <option value="রাঙ্গামাটি">রাঙ্গামাটি</option>
+                                    <option value="খাগড়াছড়ি">খাগড়াছড়ি</option>
+                                </select>
+                                {% comment %} {{ form.destination }} {% endcomment %}
+                            </div>
+                            <div class="input_field" >
+                                <input id="datepicker" name="date" placeholder="Date">
+                                {% comment %} {{ form.date }} {% endcomment %}
+                            </div>
+                            <div class="input_field">
+                                <input type="number" id="day" name="day" placeholder="Day">
+                                {% comment %} {{ form.day }} {% endcomment %}
+                            </div>                             
+                            <div class="input_field">
+                                <input type="number" id="budget" name="budget" placeholder="Budget">
+                                {% comment %} {{ form.budget }} {% endcomment %}
+                            </div> 
+                            <div class="input_field">
+                                <select name="category">
+                                    <option data-display="Category"></option>
+                                    <option value="সমুদ্র">সমুদ্র</option>
+                                    <option value="পাহাড়">পাহাড়</option>
+                                    <option value="ঝর্ণা">ঝর্ণা</option>
+                                    <option value="দ্বীপ">দ্বীপ</option>
+                                    <option value="বন">বন</option>
+                                    <option value="নদী">নদী</option>
+                                    <option value="লেক">লেক</option>
+                                    <option value="পার্ক">পার্ক</option>
+                                </select>
+                                {% comment %} {{ form.category }} {% endcomment %}
+                            </div>
+
+
+                            {% comment %} {% csrf_token %}
+                            {{ form }}   {% endcomment %}
+
+
+
+                            <div class="search_btn">
+                                <button class="boxed-btn4 " type="submit" >Search</button>
+                            </div>
+                        </form>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                    {% comment %} <form action="#" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Submit">
+                    </form> {% endcomment %}
+
+    <br><br>
+    route:<br>
+    {% for routes in route %}
+    {{ routes }}
+    {% endfor %}
+
+    <br><br>
+    <ul>
+    {% for key, value in holidays.items %}
+        <li>{{ key }} : {{ value}}</li>
+    {% endfor %}
+    </ul>
+    <br><br>
+
+    {% if dest %}
+    <a class="weatherwidget-io" href="https://forecast7.com/en/{% if dest == 'কক্সবাজার' %}21d4392d01/coxs-bazar/{% elif dest == 'বান্দরবান' %}22d1992d22/bandarban/{% elif dest == 'রাঙ্গামাটি' %}22d6692d17/rangamati/{% elif dest == 'খাগড়াছড়ি' %}23d1191d99/khagrachhari/{% elif dest == 'চট্টগ্রাম' %}22d3691d78/chittagong/{% endif %}" data-label_1="{{dest}}" data-label_2="আবহাওয়া" data-theme="original" >{{dest}} আবহাওয়া</a>
+    <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+    </script>
+    {% endif %}
+
+    <br><br>
+
+
+    <!-- where_togo_area_end  -->
+    
+    <!-- popular_destination_area_start  -->
+    <div class="popular_destination_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section_title text-center mb_70">
+                        <h3>Popular Destination</h3>
+                        <p>Suffered alteration in some form, by injected humour or good day randomised booth anim 8-bit hella wolf moon beard words.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_destination">
+                        <div class="thumb">
+                            <img src="{% static 'img/destination/1.png' %}" alt="">
+                        </div>
+                        <div class="content">
+                            <p class="d-flex align-items-center">Italy <a href="travel_destination.html">  07 Places</a> </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_destination">
+                        <div class="thumb">
+                            <img src="{% static 'img/destination/2.png' %}" alt="">
+                        </div>
+                        <div class="content">
+                            <p class="d-flex align-items-center">Brazil <a href="travel_destination.html">  03 Places</a> </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_destination">
+                        <div class="thumb">
+                            <img src="{% static 'img/destination/3.png' %}" alt="">
+                        </div>
+                        <div class="content">
+                            <p class="d-flex align-items-center">America <a href="travel_destination.html">  10 Places</a> </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_destination">
+                        <div class="thumb">
+                            <img src="{% static 'img/destination/4.png' %}" alt="">
+                        </div>
+                        <div class="content">
+                            <p class="d-flex align-items-center">Nepal <a href="travel_destination.html">  02 Places</a> </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_destination">
+                        <div class="thumb">
+                            <img src="{% static 'img/destination/5.png' %}" alt="">
+                        </div>
+                        <div class="content">
+                            <p class="d-flex align-items-center">Maldives <a href="travel_destination.html">  02 Places</a> </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_destination">
+                        <div class="thumb">
+                            <img src="{% static 'img/destination/6.png' %}" alt="">
+                        </div>
+                        <div class="content">
+                            <p class="d-flex align-items-center">Indonesia <a href="travel_destination.html">  05 Places</a> </p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- popular_destination_area_end  -->
+
+
+
+
+
+   
+
+    <div class="popular_places_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section_title text-center mb_70">
+                        <h3>Popular Places</h3>
+                        <p>Suffered alteration in some form, by injected humour or good day randomised booth anim 8-bit hella wolf moon beard words.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                {% for spot in spots %} 
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_place">
+                        <div class="thumb">
+                            <img src="{{spot.img.url}}" alt="">
+                            <a href="#" class="price">$500</a>
+                        </div>
+                        <div class="place_info">
+                            <a href="destination_details.html"><h3>{{spot.name}}</h3></a>
+                            
+                            <div class="rating_days d-flex justify-content-between">
+                                <span class="d-flex justify-content-center align-items-center">
+                                     <i class="fa fa-star"> <b>{{spot.rating}}</b>%</i>
+
+                                </span>
+                                <div class="days">
+                                    <i class="fa fa-clock-o"></i>
+                                    <a href="#">5 Days</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %} 
+                   
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="more_place_btn text-center">
+                        <a class="boxed-btn4" href="#">More Places</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="video_area video_bg overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="video_wrap text-center">
+                        <h3>Enjoy Video</h3>
+                        <div class="video_icon">
+                            <a class="popup-video video_play_button" href="https://www.youtube.com/watch?v=f59dDEk57i0">
+                                <i class="fa fa-play"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="travel_variation_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_travel text-center">
+                        <div class="icon">
+                            <img src="{% static 'img/svg_icon/1.svg' %}" alt="">
+                        </div>
+                        <h3>Comfortable Journey</h3>
+                        <p>A wonderful serenity has taken to the possession of my entire soul.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_travel text-center">
+                        <div class="icon">
+                            <img src="{% static 'img/svg_icon/2.svg' %}" alt="">
+                        </div>
+                        <h3>Luxuries Hotel</h3>
+                        <p>A wonderful serenity has taken to the possession of my entire soul.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_travel text-center">
+                        <div class="icon">
+                            <img src="{% static 'img/svg_icon/3.svg' %}" alt="">
+                        </div>
+                        <h3>Travel Guide</h3>
+                        <p>A wonderful serenity has taken to the possession of my entire soul.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="recent_trip_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section_title text-center mb_70">
+                        <h3>Recent Trips</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_trip">
+                        <div class="thumb">
+                            <img src="{% static 'img/trip/1.png' %}" alt="">
+                        </div>
+                        <div class="info">
+                            <div class="date">
+                                <span>Oct 12, 2019</span>
+                            </div>
+                            <a href="#">
+                                <h3>Journeys Are Best Measured In
+                                    New Friends</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_trip">
+                        <div class="thumb">
+                            <img src="{% static 'img/trip/2.png' %}" alt="">
+                        </div>
+                        <div class="info">
+                            <div class="date">
+                                <span>Oct 12, 2019</span>
+                            </div>
+                            <a href="#">
+                                <h3>Journeys Are Best Measured In
+                                    New Friends</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_trip">
+                        <div class="thumb">
+                            <img src="{% static 'img/trip/3.png' %}" alt="">
+                        </div>
+                        <div class="info">
+                            <div class="date">
+                                <span>Oct 12, 2019</span>
+                            </div>
+                            <a href="#">
+                                <h3>Journeys Are Best Measured In
+                                    New Friends</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

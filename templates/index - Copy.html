@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -71,15 +71,32 @@
                                                 </ul>
                                             </li>
                                             <li><a href="contact.html">Contact</a></li>
+                                            {% comment %} <li><a href="Signin.html">Sign In</a></li> {% endcomment %}
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
-                            <div class="seach_icon">
+
+                            {% comment %} <li><a href="Signin.html">Sign In</a></li> {% endcomment %}
+                            <div class="col-xl-4 col-lg-4 d-none d-lg-block">
+                                <div class="social_wrap d-flex align-items-center justify-content-end">
+                                    <div class="number">
+                                        <li><a href="user/signin">Sign In</a></li>
+                                    </div>
+                                    <div class="social_links d-none d-xl-block">
+                                        <ul>
+                                            <li><a href="user/signin">Sign In</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% comment %} <div class="seach_icon">
+                                <li><a href="Signin.html">Sign In</a></li>
                                 <a data-toggle="modal" data-target="#exampleModalCenter" href="#">
                                     <i class="fa fa-search"></i>
-                                </a>
-                            </div>
+                                </a> 
+                            </div> {% endcomment %}
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
@@ -103,29 +120,112 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="search_wrap">
-                        <form class="search_form" action="#">
+                        <form class="search_form" action="#" method="post"> 
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+
                             <div class="input_field">
-                                <input type="text" placeholder="Where to go?">
-                            </div>
-                            <div class="input_field">
-                                <input id="datepicker" placeholder="Date">
-                            </div>
-                            <div class="input_field">
-                                <select>
-                                    <option data-display="Travel type">Travel type</option>
-                                    <option value="1">Some option</option>
-                                    <option value="2">Another option</option>
+                                <select name="source">
+                                    <option data-display="Source"></option>
+                                    <option value="চট্টগ্রাম">চট্টগ্রাম</option>
+                                    <option value="কক্সবাজার">কক্সবাজার</option>
+                                    <option value="বান্দরবান">বান্দরবান</option>
+                                    <option value="রাঙ্গামাটি">রাঙ্গামাটি</option>
+                                    <option value="খাগড়াছড়ি">খাগড়াছড়ি</option>
                                 </select>
+                                {% comment %} <label for="{{ form.source.id_for_label }}">উৎস</label>
+                                {{ form.source }} {% endcomment %}
                             </div>
+                            <div class="input_field">
+                                <select name="destination">
+                                    <option data-display="{% if dest %}{{dest}}{% else %}Destination{% endif %}"></option>
+                                    <option value="চট্টগ্রাম">চট্টগ্রাম</option>
+                                    <option value="কক্সবাজার">কক্সবাজার</option>
+                                    <option value="বান্দরবান">বান্দরবান</option>
+                                    <option value="রাঙ্গামাটি">রাঙ্গামাটি</option>
+                                    <option value="খাগড়াছড়ি">খাগড়াছড়ি</option>
+                                </select>
+                                {% comment %} {{ form.destination }} {% endcomment %}
+                            </div>
+                            <div class="input_field" >
+                                <input id="datepicker" name="date" placeholder="Date">
+                                {% comment %} {{ form.date }} {% endcomment %}
+                            </div>
+                            <div class="input_field">
+                                <input type="number" id="day" name="day" placeholder="Day">
+                                {% comment %} {{ form.day }} {% endcomment %}
+                            </div>                             
+                            <div class="input_field">
+                                <input type="number" id="budget" name="budget" placeholder="Budget">
+                                {% comment %} {{ form.budget }} {% endcomment %}
+                            </div> 
+                            <div class="input_field">
+                                <select name="category">
+                                    <option data-display="Category"></option>
+                                    <option value="সমুদ্র">সমুদ্র</option>
+                                    <option value="পাহাড়">পাহাড়</option>
+                                    <option value="ঝর্ণা">ঝর্ণা</option>
+                                    <option value="দ্বীপ">দ্বীপ</option>
+                                    <option value="বন">বন</option>
+                                    <option value="নদী">নদী</option>
+                                    <option value="লেক">লেক</option>
+                                    <option value="পার্ক">পার্ক</option>
+                                </select>
+                                {% comment %} {{ form.category }} {% endcomment %}
+                            </div>
+
+
+                            {% comment %} {% csrf_token %}
+                            {{ form }}   {% endcomment %}
+
+
+
                             <div class="search_btn">
                                 <button class="boxed-btn4 " type="submit" >Search</button>
                             </div>
                         </form>
+
+
+
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+                    {% comment %} <form action="#" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Submit">
+                    </form> {% endcomment %}
+
+    <br><br>
+    route:<br>
+    {% for routes in route %}
+    {{ routes }}
+    {% endfor %}
+
+    <br><br>
+    <ul>
+    {% for key, value in holidays.items %}
+        <li>{{ key }} : {{ value}}</li>
+    {% endfor %}
+    </ul>
+    <br><br>
+
+    {% if dest %}
+    <a class="weatherwidget-io" href="https://forecast7.com/en/{% if dest == 'কক্সবাজার' %}21d4392d01/coxs-bazar/{% elif dest == 'বান্দরবান' %}22d1992d22/bandarban/{% elif dest == 'রাঙ্গামাটি' %}22d6692d17/rangamati/{% elif dest == 'খাগড়াছড়ি' %}23d1191d99/khagrachhari/{% elif dest == 'চট্টগ্রাম' %}22d3691d78/chittagong/{% endif %}" data-label_1="{{dest}}" data-label_2="আবহাওয়া" data-theme="original" >{{dest}} আবহাওয়া</a>
+    <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+    </script>
+    {% endif %}
+
+    <br><br>
+
+
     <!-- where_togo_area_end  -->
     
     <!-- popular_destination_area_start  -->
@@ -268,12 +368,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
 
 
     <div class="video_area video_bg overlay">
@@ -520,6 +614,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
          }
         });
     </script>
+    <script>
+        $('#datepicker2').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+             rightIcon: '<span class="fa fa-caret-down"></span>'
+         }
+        });
+    </script>
+
+
 </body>
 
 </html>
