@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block content %}
 <li><a href="{% url 'sign_in' %}">Sign In</a></li>
@@ -12,23 +13,26 @@
 					<img src="{% static 'images/img-01.png' %}" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" method="POST">
+				<form class="login100-form validate-form" action="{% url 'sign_in' %}" method="post">
                     {% csrf_token %}
-                    {{ forms }}
+                    
 					<span class="login100-form-title">
 						Member Signup
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Unique username is required">
-						<input class="input100" type="text" name="username" placeholder="Username">
+                        {% render_field form.username class+="input100" name="username" placeholder="Username" %}
+						{% comment %} <input class="input100" type="text" name="username" placeholder="Username"> {% endcomment %}
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-address-card-o" aria-hidden="true"></i>
 						</span>
+                        
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "First Name is required">
-						<input class="input100" type="text" name="first_name" placeholder="First Name">
+                        {% render_field form.first_name class+="input100" name="first_name" placeholder="First Name" %}
+						{% comment %} <input class="input100" type="text" name="first_name" placeholder="First Name"> {% endcomment %}
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -36,7 +40,8 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Last Name is required">
-						<input class="input100" type="text" name="last_name" placeholder="Last Name">
+                        {% render_field form.last_name class+="input100" name="last_name" placeholder="Last Name" %}
+						{% comment %} <input class="input100" type="text" name="last_name" placeholder="Last Name"> {% endcomment %}
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-user-circle-o" aria-hidden="true"></i>
@@ -44,7 +49,8 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email">
+						{% render_field form.email class+="input100" name="email" placeholder="Email" %}
+                        {% comment %} <input class="input100" type="text" name="email" placeholder="Email"> {% endcomment %}
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -52,7 +58,8 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="password1" placeholder="Password">
+						{% render_field form.password1 class+="input100" name="password1" placeholder="Password" %}
+                        {% comment %} <input class="input100" type="password" name="password1" placeholder="Password"> {% endcomment %}
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -60,7 +67,8 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="password2" placeholder="Confirm Password">
+						{% render_field form.password2 class+="input100" name="password2" placeholder="Confirm Password" %}
+                        {% comment %} <input class="input100" type="password" name="password2" placeholder="Confirm Password"> {% endcomment %}
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>

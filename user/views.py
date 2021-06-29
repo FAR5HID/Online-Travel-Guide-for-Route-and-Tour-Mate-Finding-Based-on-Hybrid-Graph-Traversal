@@ -9,16 +9,21 @@ from django.contrib.auth.decorators import login_required
 # from products.models import Product
 
 def signup(request):
-    if(request.method=="POST"):
+    print("test1")
+    if request.method == 'post':
+        print("test2")
+        name = request.POST.get('username')
+        print("test3 = ", name)
         form = usersignup(request.POST)
         if(form.is_valid()):
             form.save()
             username = form.cleaned_data.get('username')
+            print("test4 = ", username)
             messages.success(request,f'Your account has been created! You can now Sign In')
-            return redirect('login')
+            return redirect('sign_in')
 
     else:
         form = usersignup()
-    return render(request,'signup.html',{'form':form,'title':"Signup"})
+    return render(request,'signup.html',{'form':form})
 
 
